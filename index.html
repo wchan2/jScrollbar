@@ -1,10 +1,34 @@
 <html>
 <head>
-  <title>jTopScrollbar</title>
-  <style type="text/css"></style>
+  <title>jScollbar</title>
+  <style type="text/css">
+    body {
+      background-color: lightgray;
+    }
+
+    .test {
+      white-space: nowrap;
+      width: 300px;
+      border: 1px solid white;
+      overflow-x: scroll;
+    }
+  </style>
 </head>
 <body>
 
+  <div class="test">
+    Lorem ipsum dolor sit amet, possim oportere dignissim te per, in vix tantas quidam fuisset, quo fabulas fierent conceptam ea. <br />
+    Mundi bonorum volumus et pri, vel ex civibus dignissim quaerendum. Cu ius audiam latine scriptorem, vix fugit nobis nusquam in. <br />
+    Veri posse decore eu eum, no utinam nostrum eam. Vidit pertinacia eloquentiam sit ex, no postulant molestiae accommodare qui. Ut <br />
+    debet fuisset sed, duo ut stet docendi.
+  </div>
+
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/jscrollbar.js"></script>
+  <script type="text/javascript">
+    (function( $ ) {
+      $('.test').jScrollbar();
+    }( jQuery ));
+  </script>
 </body>
 </html>
