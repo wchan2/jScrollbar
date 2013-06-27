@@ -45,14 +45,15 @@
   };
   
   $.fn.jScrollbar = function() {
-    // placing it here so that its quicker to load
     var selector = this.selector;
 
+    // placing it here so that its quicker to load
     $(this).css({
       paddingTop: '1px',
       overflowX: 'hidden'
     });
 
+    // creating the scroll view
     return this.each(function() {
       var scrollview = Object.create(jScrollbar);
       scrollview.init({ contentDiv: selector });
