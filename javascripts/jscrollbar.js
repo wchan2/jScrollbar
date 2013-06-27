@@ -1,9 +1,3 @@
-// for vertical scrolling
-// http://stackoverflow.com/questions/3253199/remove-html-scrollbars-but-allow-mousewheel-scrolling
-
-// horizontal scrolling
-// http://stackoverflow.com/questions/2274627/how-can-i-get-horizontal-scrollbars-at-top-and-bottom-of-a-div
-
 ;(function( $ ) {
 
   var jScrollbar = {
