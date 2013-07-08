@@ -1,4 +1,5 @@
 ;(function( $ ) {
+  'use strict';
 
   var jScrollbar = {
     init: function(contentDiv, options) {
@@ -54,25 +55,11 @@
     },
     attachEvents: function() {
       var $contentDiv = this.$contentDiv,
-          $scrollbar = this.$scrollbar;
+          $scrollbar = this.$scrollbar,
+          scrollDirection = (this.options.scrollbarLocation === 'left') ? 'scrollTop' : 'scrollLeft';
 
-      if (this.options.scrollbarLocation === 'left') {
-        $scrollbar.on('scroll', function(event) {
-          $contentDiv.get(0).scrollTop = this.scrollTop;
-        });
-
-        $contentDiv.on('scroll', function(event) {
-          $scrollbar.get(0).scrollTop = this.scrollTop;
-        });
-      } else {
-        $scrollbar.on('scroll', function(event) {
-          $contentDiv.get(0).scrollLeft = this.scrollLeft;
-        });
-
-        $contentDiv.on('scroll', function(event) {
-          $scrollbar.get(0).scrollLeft = this.scrollLeft;
-        });
-      }
+      $scrollbar.on('scroll', function() { $contentDiv.get(0)[scrollDirection] = this[scrollDirection]; });
+      $contentDiv.on('scroll', function() { $scrollbar.get(0)[scrollDirection] = this[scrollDirection]; });
     }
   };
   
@@ -92,7 +79,7 @@
         paddingTop: '1px',
         display: 'inline-block',
         overflowX: 'hidden'
-      });  
+      });
     }
     
     // creating the scroll view
