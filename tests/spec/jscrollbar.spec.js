@@ -7,4 +7,8 @@ describe('jScrollbar', function() {
   it('has options', function() {
     expect($.fn.jScrollbar.options).toBeDefined();
   });
+
+  it('has default scrollbarLocation option set to top', function() {
+    expect($.fn.jScrollbar.options.scrollbarLocation).toEqual('top');
+  });
 });
