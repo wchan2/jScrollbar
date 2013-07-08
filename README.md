@@ -6,14 +6,6 @@ A jQuery plugin that allows scrollbars to be placed in other places besides thei
 
 options
 --------
-* dropdownClass - class to attach to the outermost (ul) element of the dropdown (default null)
-* dropdownId - id to attach to the outermost (ul) element of the dropdown (default null)
-* listenerEvent - event in which to trigger the dropdown (default = click)
-* zindex - z-index of the dropdown (default = 1)
-* bgcolor - background color of the dropdown (default = white)
-* actions - a list of actions to put into the dropdown
-* css - a css object that is applied to the dropdown; please know what you are doing before overridding verticalAlign, listStyle, display, and position
-
 * scrollbarLocation: (default: 'top') Can take a value of 'top' or 'left' where 'top' will give the element selected a 'top' scrollbar and 'left' will give it a 'left' scrollbar
 * scrollbarClass: (default: 'jscrollbar') The scrollbar div that gets created will inherit this class
 * scrollbarBodyClass: (default: 'jscrollbarBody') The scrollbar body, which is the hidden content inside the body of the scrollbar inherits this class
