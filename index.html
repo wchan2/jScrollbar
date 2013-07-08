@@ -11,6 +11,18 @@
       width: 300px;
       border: 1px solid white;
       overflow-x: scroll;
+      margin-bottom: 20px;
+    }
+
+    .test2 {
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+      overflow-y: hidden;
+    }
+
+    .jscrollWrapper {
+      display: inline-block;
     }
   </style>
 </head>
@@ -23,11 +35,19 @@
     debet fuisset sed, duo ut stet docendi.
   </div>
 
+  <div class="test2">
+    Lorem ipsum dolor sit amet, possim oportere dignissim te per, in vix tantas quidam fuisset, quo fabulas fierent conceptam ea. <br />
+    Mundi bonorum volumus et pri, vel ex civibus dignissim quaerendum. Cu ius audiam latine scriptorem, vix fugit nobis nusquam in. <br />
+    Veri posse decore eu eum, no utinam nostrum eam. Vidit pertinacia eloquentiam sit ex, no postulant molestiae accommodare qui. Ut <br />
+    debet fuisset sed, duo ut stet docendi.
+  </div>
+
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/jscrollbar.js"></script>
   <script type="text/javascript">
     (function( $ ) {
-      $('.test').jScrollbar();
+      $('.test').jScrollbar({ scrollbarLocation: 'top' });
+      $('.test2').jScrollbar({ scrollbarLocation: 'left' });
     }( jQuery ));
   </script>
 </body>
