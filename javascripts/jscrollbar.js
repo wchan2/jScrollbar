@@ -2,8 +2,14 @@
   'use strict';
 
   var jScrollbar = {
+    defaults: {
+      scrollbarLocation: 'top',
+      scrollbarClass: 'jscrollbar',
+      scrollbarBodyClass: 'jscrollbarBody',
+      contentWrapperClass: 'jscrollWrapper'
+    },
     init: function(contentDiv, options) {
-      this.options        = $.extend({}, $.fn.jScrollbar.options, options);
+      this.options        = $.extend({}, this.defaults, options);
       this.$contentDiv    = $(contentDiv);
       this.$scrollbar     = $('<div />').addClass(this.options.scrollbarClass);
       this.$scrollbarBody = $('<div />').addClass(this.options.scrollbarBodyClass);
@@ -23,78 +29,67 @@
       this.$contentDiv.wrap(contentWrapper).before(this.$scrollbar);
     },
     setUpScrollbarCSS: function() {
+      // CSS for top scrollbar body (default is top)
+      var scrollbarCSS = {
+        width: this.$contentDiv.width() + 3,
+        overflowX: 'scroll'
+      };
       if (this.options.scrollbarLocation === 'left') {
-        // CSS for left scrollbar
-        return {
+        scrollbarCSS = {
           height: this.$contentDiv.height(),
           overflowY: 'scroll',
           display: 'inline-block'
         };
       }
-
-      // CSS for top scrollbar (the default is top)
-      return {
-        width: this.$contentDiv.width() + 3,
-        overflowX: 'scroll'
-      };
+      return scrollbarCSS;
     },
     setUpScrollbarBodyCSS: function() {
+      // CSS for top scrollbar body (default is top)
+      var scrollbarBodyCSS = {
+        width: this.$contentDiv[0].scrollWidth,
+        paddingTop: '1px'
+      };
       if (this.options.scrollbarLocation === 'left') {
-        // CSS for left scrollbar body
-        return {
+        scrollbarBodyCSS = {
           height: this.$contentDiv[0].scrollHeight,
           paddingLeft: '1px'
         };
       }
 
-      // CSS for top scrollbar body (default is top)
-      return {
-        width: this.$contentDiv[0].scrollWidth,
-        paddingTop: '1px'
-      };
+      return scrollbarBodyCSS;
     },
     attachEvents: function() {
       var $contentDiv = this.$contentDiv,
           $scrollbar = this.$scrollbar,
           scrollDirection = (this.options.scrollbarLocation === 'left') ? 'scrollTop' : 'scrollLeft';
 
-      $scrollbar.on('scroll', function() { $contentDiv.get(0)[scrollDirection] = this[scrollDirection]; });
-      $contentDiv.on('scroll', function() { $scrollbar.get(0)[scrollDirection] = this[scrollDirection]; });
+      $scrollbar.on('scroll', function() {
+        $contentDiv.get(0)[scrollDirection] = this[scrollDirection];
+      });
+      $contentDiv.on('scroll', function() {
+        $scrollbar.get(0)[scrollDirection] = this[scrollDirection];
+      });
     }
   };
   
   $.fn.jScrollbar = function(options) {
     var selector = this.selector;
+    var scrollbarCSS = {
+      display: 'inline-block',
+      paddingTop: '1px',
+      overflowX: 'hidden'
+    };
 
-    // placing it here so that its quicker to load
-    // TODO: refactor
     if (options && options.scrollbarLocation && options.scrollbarLocation === 'left') {
-      $(this).css({
-        paddingLeft: '1px',
-        display: 'inline-block',
-        overflowY: 'hidden'
-      });
-    } else {
-      $(this).css({
-        paddingTop: '1px',
-        display: 'inline-block',
-        overflowX: 'hidden'
-      });
+      scrollbarCSS.paddingLeft = '1px';
+      scrollbarCSS.overflowY = 'hidden';
     }
+    $(this).css(scrollbarCSS);
     
-    // creating the scroll view
     return this.each(function() {
       var scrollview = Object.create(jScrollbar);
       scrollview.init(selector, options);
     });
-  };
-
-  // initializing the options
-  $.fn.jScrollbar.options = {
-    scrollbarLocation: 'top',
-    scrollbarClass: 'jscrollbar',
-    scrollbarBodyClass: 'jscrollbarBody',
-    contentWrapperClass: 'jscrollWrapper'
   };
 
 }( jQuery ));
